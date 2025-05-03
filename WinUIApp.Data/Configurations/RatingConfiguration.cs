@@ -28,6 +28,9 @@ namespace WinUiApp.Data.Configurations
             builder.Property(rating => rating.IsActive)
                    .HasColumnType("tinyint")
                    .HasDefaultValue(null);
+
+            builder.HasIndex(rating => new { rating.UserID, rating.DrinkID })
+                   .IsUnique();
         }
     }
 }
