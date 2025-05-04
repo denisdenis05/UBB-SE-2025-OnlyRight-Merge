@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace imdbdrinks_ratingsmodule.ViewModels
+namespace WinUIApp.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ namespace imdbdrinks_ratingsmodule.ViewModels
     /// <summary>
     /// ViewModel for managing reviews associated with ratings.
     /// </summary>
-    public class ReviewViewModel : ViewModelBase
+    public class ReviewViewModel : RatingAndReviewViewModelBase
     {
         private const int DefaultUserId = 999;
 

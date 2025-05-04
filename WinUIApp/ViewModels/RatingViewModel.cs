@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace imdbdrinks_ratingsmodule.ViewModels
+namespace WinUIApp.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
@@ -18,7 +18,7 @@ namespace imdbdrinks_ratingsmodule.ViewModels
     /// <summary>
     /// ViewModel for managing ratings and associated bottle assets.
     /// </summary>
-    public class RatingViewModel : ViewModelBase
+    public class RatingViewModel : RatingAndReviewViewModelBase
     {
         private const int BottleRatingToIndexOffset = 1;
         private const int RatingsCountToUserOffset = 1;

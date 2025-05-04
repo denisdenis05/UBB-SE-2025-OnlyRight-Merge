@@ -7,74 +7,58 @@ namespace WinUIApp.Models
     using System;
 
     /// <summary>
-    /// Represents a user review for a drink.
+    /// Represents a user's review for a rating.
     /// </summary>
     public class Review
     {
+        private const int MaxContentLength = 500;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Review"/> class.
+        /// Gets or sets the unique identifier for the review.
         /// </summary>
-        /// <param name="drinkId">The ID of the reviewed drink.</param>
-        /// <param name="reviewScore">The score given (0–5).</param>
-        /// <param name="reviewerUserId">The ID of the reviewer.</param>
-        /// <param name="reviewTitle">Title of the review.</param>
-        /// <param name="reviewDescription">Description/body of the review.</param>
-        /// <param name="reviewPostedDateTime">Date the review was posted.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if score is not between 0 and 5.</exception>
-        /// <exception cref="ArgumentException">Thrown if title or description is null/empty.</exception>
-        public Review(int drinkId, float reviewScore, int reviewerUserId, string reviewTitle, string reviewDescription, DateTime reviewPostedDateTime)
+        public int ReviewId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier of the associated rating.
+        /// </summary>
+        public int RatingId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier of the user who submitted the review.
+        /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the content of the review.
+        /// </summary>
+        public string Content { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the date and time when the review was created.
+        /// </summary>
+        public DateTime CreationDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the review is active.
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
+        /// Validates that the review content is not empty and does not exceed the maximum length.
+        /// </summary>
+        /// <returns>True if the review is valid; otherwise, false.</returns>
+        public bool IsValid()
         {
-            if (reviewScore < 0 || reviewScore > 5)
-            {
-                throw new ArgumentOutOfRangeException(nameof(reviewScore), "Score must be between 0 and 5.");
-            }
-
-            if (string.IsNullOrWhiteSpace(reviewTitle))
-            {
-                throw new ArgumentException("Review title cannot be null or empty.", nameof(reviewTitle));
-            }
-
-            if (string.IsNullOrWhiteSpace(reviewDescription))
-            {
-                throw new ArgumentException("Review description cannot be null or empty.", nameof(reviewDescription));
-            }
-
-            this.DrinkId = drinkId;
-            this.ReviewScore = reviewScore;
-            this.ReviewerUserId = reviewerUserId;
-            this.ReviewTitle = reviewTitle;
-            this.ReviewDescription = reviewDescription;
-            this.ReviewPostedDateTime = reviewPostedDateTime;
+            return !string.IsNullOrWhiteSpace(this.Content) && this.Content.Length <= MaxContentLength;
         }
 
         /// <summary>
-        /// Gets the ID of the reviewed drink.
+        /// Activates the review, setting its creation date to the current time.
         /// </summary>
-        public int DrinkId { get; }
-
-        /// <summary>
-        /// Gets the score given to the drink (0 to 5).
-        /// </summary>
-        public float ReviewScore { get; }
-
-        /// <summary>
-        /// Gets the user ID of the reviewer.
-        /// </summary>
-        public int ReviewerUserId { get; }
-
-        /// <summary>
-        /// Gets the title of the review.
-        /// </summary>
-        public string ReviewTitle { get; }
-
-        /// <summary>
-        /// Gets the description/body of the review.
-        /// </summary>
-        public string ReviewDescription { get; }
-
-        /// <summary>
-        /// Gets the date and time the review was posted.
-        /// </summary>
-        public DateTime ReviewPostedDateTime { get; }
+        public void Activate()
+        {
+            this.IsActive = true;
+            this.CreationDate = DateTime.Now;
+        }
     }
 }

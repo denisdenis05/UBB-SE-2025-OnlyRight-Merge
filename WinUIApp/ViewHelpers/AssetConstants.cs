@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="AssetConstants.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WinUIApp.ViewHelpers
 {
-    internal class AssetConstants
+    /// <summary>
+    /// Constants for asset paths used in the application.
+    /// </summary>
+    public static class AssetConstants
     {
+        /// <summary>
+        /// Path to the empty bottle image.
+        /// </summary>
+        public const string EmptyBottlePath = "ms-appx:///Assets/Bottle.png";
+
+        /// <summary>
+        /// Path to the full bottle image.
+        /// </summary>
+        public const string FilledBottlePath = "ms-appx:///Assets/FullBottle.png";
     }
 }
