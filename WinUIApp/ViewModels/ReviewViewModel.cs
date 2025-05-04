@@ -2,21 +2,20 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace WinUIApp.ViewModels
+namespace imdbdrinks_ratingsmodule.ViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Diagnostics;
-    using System.Runtime.CompilerServices;
     using WinUIApp.Models;
     using WinUIApp.Services;
+    using WinUIApp.Services;
+    using WinUIApp.ViewModels;
 
     /// <summary>
     /// ViewModel for managing reviews associated with ratings.
     /// </summary>
-    public class ReviewViewModel
+    public class ReviewViewModel : ViewModelBase
     {
         private const int DefaultUserId = 999;
 
@@ -24,11 +23,6 @@ namespace WinUIApp.ViewModels
         private ObservableCollection<Review> reviews;
         private Review? selectedReview;
         private string reviewContent = string.Empty;
-
-        /// <summary>
-        /// Event triggered when a property changes.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewViewModel"/> class.
@@ -97,13 +91,14 @@ namespace WinUIApp.ViewModels
                 return;
             }
 
+            // Assuming default values for the required parameters of the Review constructor.
             var newReview = new Review(
-                drinkId: ratingId, // Assuming ratingId corresponds to drinkId
-                reviewScore: 5.0f, // Default score, adjust as needed
-                reviewerUserId: DefaultUserId,
-                reviewTitle: "Default Title", // Replace with actual title if available
-                reviewDescription: this.ReviewContent,
-                reviewPostedDateTime: DateTime.Now
+                drinkId: ratingId, // Assuming ratingId corresponds to drinkId.
+                reviewScore: 0.0f, // Default score.
+                reviewerUserId: DefaultUserId, // Using the DefaultUserId constant.
+                reviewTitle: "Default Title", // Placeholder title.
+                reviewDescription: this.ReviewContent, // Using the ReviewContent as the description.
+                reviewPostedDateTime: DateTime.Now // Current date and time.
             );
 
             try
@@ -112,7 +107,6 @@ namespace WinUIApp.ViewModels
             }
             catch (Exception exception)
             {
-                Debug.WriteLine($"Error adding review: {exception.Message}");
                 return;
             }
 
@@ -132,57 +126,6 @@ namespace WinUIApp.ViewModels
         private void CloseWindow()
         {
             this.RequestClose?.Invoke(this, EventArgs.Empty);
-        }
-
-        /// <summary>
-        /// Raises the PropertyChanged event for the specified property.
-        /// </summary>
-        /// <param name="propertyName">The name of the property that changed.</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// Sets the value of a property and raises the PropertyChanged event if the value has changed.
-        /// </summary>
-        /// <typeparam name="T">The type of the property.</typeparam>
-        /// <param name="storage">The backing field of the property.</param>
-        /// <param name="value">The new value of the property.</param>
-        /// <param name="propertyName">The name of the property being set (optional).</param>
-        /// <returns>True if the value was changed, otherwise false.</returns>
-        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-
-            storage = value;
-            this.OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        /// <summary>
-        /// Sets the value of a property, invokes an additional action, and raises the PropertyChanged event if the value has changed.
-        /// </summary>
-        /// <typeparam name="T">The type of the property.</typeparam>
-        /// <param name="storage">The backing field of the property.</param>
-        /// <param name="value">The new value of the property.</param>
-        /// <param name="onChanged">The action to invoke after the property is set.</param>
-        /// <param name="propertyName">The name of the property being set (optional).</param>
-        /// <returns>True if the value was changed, otherwise false.</returns>
-        protected virtual bool SetProperty<T>(ref T storage, T value, Action onChanged, [CallerMemberName] string? propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-
-            storage = value;
-            onChanged?.Invoke();
-            this.OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }
