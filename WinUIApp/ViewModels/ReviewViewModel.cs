@@ -91,15 +91,13 @@ namespace imdbdrinks_ratingsmodule.ViewModels
                 return;
             }
 
-            // Assuming default values for the required parameters of the Review constructor.
-            var newReview = new Review(
-                drinkId: ratingId, // Assuming ratingId corresponds to drinkId.
-                reviewScore: 0.0f, // Default score.
-                reviewerUserId: DefaultUserId, // Using the DefaultUserId constant.
-                reviewTitle: "Default Title", // Placeholder title.
-                reviewDescription: this.ReviewContent, // Using the ReviewContent as the description.
-                reviewPostedDateTime: DateTime.Now // Current date and time.
-            );
+            var newReview = new Review
+            {
+                RatingId = ratingId,
+                UserId = DefaultUserId,
+                Content = this.ReviewContent,
+                IsActive = true,
+            };
 
             try
             {
