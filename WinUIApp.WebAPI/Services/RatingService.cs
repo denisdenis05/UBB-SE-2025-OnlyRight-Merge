@@ -34,7 +34,11 @@ namespace WinUIApp.WebAPI.Services
         /// </summary>
         /// <param name="ratingId">The rating identifier.</param>
         /// <returns>The corresponding rating or null if it doesnt exist.<see cref="Rating"/>.</returns>
-        public Rating? GetRatingById(int ratingId) => this.ratingRepository.GetRatingById(ratingId).ToModel();
+        public Rating? GetRatingById(int ratingId)
+        {
+            var dataRating = this.ratingRepository.GetRatingById(ratingId);
+            return dataRating?.ToModel();
+        }
 
         /// <summary>
         /// Retrieves all ratings associated with a specific drink.
