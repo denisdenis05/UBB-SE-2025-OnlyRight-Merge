@@ -23,15 +23,12 @@ public class ProxyAdminService : IAdminService
         };
     }
 
-    private string GetApiUrl()
-    {
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .Build();
-        return configuration.GetValue<string>("ApiUrl");
-    }
-
+    /// <summary>
+    /// Checks if  the user is an admin
+    /// </summary>
+    /// <param name="userId"> user id. </param>
+    /// <returns> true, if yes, false otherwise. </returns>
+    /// <exception cref="Exception"> any issues. </exception>
     public bool IsAdmin(int userId)
     {
         try
@@ -65,5 +62,13 @@ public class ProxyAdminService : IAdminService
         {
             throw new Exception($"Error happened while sending notification from {senderUserId} ({userModificationRequestDetails})", exception);
         }
+    }
+    private string GetApiUrl()
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+        return configuration.GetValue<string>("ApiUrl");
     }
 }

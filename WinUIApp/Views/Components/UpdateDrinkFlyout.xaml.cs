@@ -74,7 +74,7 @@ namespace WinUIApp.Views.Components
         {
             var drinkService = new ProxyDrinkService();
             var userService = new UserService();
-            var adminService = new AdminService();
+            var adminService = new ProxyAdminService();
             bool isAdmin = adminService.IsAdmin(this.UserId);
 
             var allBrands = drinkService.GetDrinkBrandNames();
@@ -152,7 +152,7 @@ namespace WinUIApp.Views.Components
                 this.viewModel.ValidateUpdatedDrinkDetails();
                 this.DrinkToUpdate.CategoryList = this.viewModel.GetSelectedCategories();
 
-                var adminService = new WinUIApp.Services.DummyServices.AdminService();
+                var adminService = new WinUIApp.Services.DummyServices.ProxyAdminService();
                 bool isAdmin = adminService.IsAdmin(UserId);
 
                 string message;

@@ -47,7 +47,11 @@ namespace WinUIApp.Views.Pages
         /// <summary>
         /// Gets the view model for the DrinkDetailPage.
         /// </summary>
-        public DrinkDetailPageViewModel ViewModel { get; } = new DrinkDetailPageViewModel(new Services.ProxyDrinkService(), new ProxyDrinkReviewService(), new Services.DummyServices.UserService(), new Services.DummyServices.AdminService());
+        public DrinkDetailPageViewModel ViewModel { get; } = new DrinkDetailPageViewModel(
+            new Services.ProxyDrinkService(),
+            new ProxyDrinkReviewService(), 
+            new Services.DummyServices.UserService(), 
+            new Services.DummyServices.ProxyAdminService());
 
         /// <summary>
         /// Handles the navigation to the page. It loads the drink details based on the passed drink ID.

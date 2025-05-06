@@ -21,7 +21,7 @@ namespace WinUIApp.Views.Components
     /// </summary>
     public sealed partial class AddDrinkFlyout : UserControl
     {
-        private readonly AdminService adminService;
+        private readonly IAdminService adminService;
         private AddDrinkMenuViewModel viewModel;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace WinUIApp.Views.Components
         /// </summary>
         public AddDrinkFlyout()
         {
-            this.adminService = new AdminService();
+            this.adminService = new ProxyAdminService();
             this.InitializeComponent();
             this.Loaded += this.AddDrinkFlyout_Loaded;
             this.CategoryList.SelectionChanged += this.CategoryList_SelectionChanged;

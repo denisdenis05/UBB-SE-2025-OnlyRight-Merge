@@ -65,6 +65,7 @@ namespace WinUIApp
             services.AddSingleton<IConfiguration>(configuration);
             services.AddSingleton<IRatingService, ProxyRatingService>();
             services.AddSingleton<IReviewService, ProxyReviewService>();
+            services.AddSingleton<IAdminService, ProxyAdminService>();
             services.AddSingleton<IUserService, UserService>();
 
 
