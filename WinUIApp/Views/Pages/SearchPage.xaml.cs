@@ -36,7 +36,7 @@ namespace WinUIApp.Views.Pages
         {
             base.OnNavigatedTo(eventArguments);
             MainWindow.PreviousPage = typeof(SearchPage);
-            this.searchPageViewModel = new SearchPageViewModel(new Services.ProxyDrinkService(), new Services.DummyServices.DrinkReviewService());
+            this.searchPageViewModel = new SearchPageViewModel(new Services.ProxyDrinkService(), new Services.ProxyDrinkReviewService());
             this.SortSelectorControl.SetSortOrder(this.searchPageViewModel.IsAscending);
             if (eventArguments.Parameter is SearchPageNavigationParameters parameters)
             {
