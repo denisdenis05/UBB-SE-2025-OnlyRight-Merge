@@ -38,5 +38,19 @@ namespace WinUIApp.WebUI.Controllers
 
             return View(viewModel);
         }
+        
+        [HttpPost]
+        public IActionResult RemoveDrink(int id)
+        {
+            try
+            {
+                drinkService.DeleteDrink(id);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("DrinkDetail", new { id });
+            }
+        }
     }
 } 
