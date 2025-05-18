@@ -1,8 +1,9 @@
 using Drink = WinUIApp.ProxyServices.Models.Drink;
 
-namespace WinUIApp.WebMVC.Models;
-
-public class HomeViewModel
+namespace WinUIApp.WebUI.Models
 {
-    public Drink DrinkOfTheDay { get; set; }
+    public class HomeViewModel
+    {
+        public required Drink DrinkOfTheDay { get; set; }
+    }
 }

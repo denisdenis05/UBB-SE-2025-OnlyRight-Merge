@@ -1,41 +1,43 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WinUIApp.ProxyServices;
-using WinUIApp.WebMVC.Models;
+using WinUIApp.WebUI.Models;
 
-namespace WinUIApp.WebMVC.Controllers;
-
-public class HomeController : Controller
+namespace WinUIApp.WebUI.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-    
-    private readonly IDrinkService drinkService;
-
-    public HomeController(ILogger<HomeController> logger,IDrinkService drinkService)
+    public class HomeController : Controller
     {
-        this.drinkService = drinkService;
-    }
-
-    public IActionResult Index()
-    {
-        var drinkOfTheDay = drinkService.GetDrinkOfTheDay();
-
-        var homeViewModel = new HomeViewModel
-        {
-            DrinkOfTheDay = drinkOfTheDay,
-        };
+        private readonly ILogger<HomeController> _logger;
         
-        return View(homeViewModel);
-    }
+        private readonly IDrinkService drinkService;
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public HomeController(ILogger<HomeController> logger,IDrinkService drinkService)
+        {
+            this.drinkService = drinkService;
+            _logger = logger;
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Index()
+        {
+            var drinkOfTheDay = drinkService.GetDrinkOfTheDay();
+            
+            var homeViewModel = new HomeViewModel
+            {
+                DrinkOfTheDay = drinkOfTheDay
+            };
+            
+            return View(homeViewModel);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
