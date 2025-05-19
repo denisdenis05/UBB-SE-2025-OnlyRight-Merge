@@ -196,7 +196,7 @@ namespace WinUIApp.WebAPI.Repositories
 
                 var existingDrink = dbContext.Drinks
                                              .Include(drink => drink.DrinkCategories) 
-                                             .FirstOrDefault(drink => drink.DrinkId == drink.DrinkId);
+                                             .FirstOrDefault(drink => drink.DrinkId == drinkDto.DrinkId);
 
                 if (existingDrink == null)
                     throw new Exception("No drink found with the provided ID.");
