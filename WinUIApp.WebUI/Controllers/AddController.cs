@@ -5,7 +5,7 @@ using WinUIApp.ProxyServices;
 using WinUIApp.ProxyServices.Models;
 using WinUIApp.WebUI.Models;
 
-namespace WinUIApp.WebMVC.Controllers
+namespace WinUIApp.WebUI.Controllers
 {
     public class AddController : Controller
     {
