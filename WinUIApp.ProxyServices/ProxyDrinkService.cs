@@ -7,9 +7,11 @@ namespace WinUIApp.ProxyServices
     using Microsoft.Extensions.Configuration;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Json;
+    using System.Text.Json;
     using WinUIApp.Data.Requests.Drink;
     using WinUIApp.ProxyServices.Models;
 
@@ -149,6 +151,13 @@ namespace WinUIApp.ProxyServices
             try
             {
                 var request = new UpdateDrinkRequest { drink = convertedDrink };
+                ///////////
+                string json = JsonSerializer.Serialize(request, new JsonSerializerOptions
+                {
+                    WriteIndented = true // optional, for pretty-printing
+                });
+                Debug.WriteLine(json); // See the output in console/log
+                //////////
                 var response = httpClient.PutAsJsonAsync("Drink/update", request).Result;
                 response.EnsureSuccessStatusCode();
             }

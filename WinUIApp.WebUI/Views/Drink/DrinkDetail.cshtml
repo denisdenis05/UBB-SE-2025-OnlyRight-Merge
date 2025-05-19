@@ -11,7 +11,7 @@
 <div class="d-flex justify-content-center mb-3">
 
     <!-- Placeholder for Update -->
-    <form method="get" asp-action="UpdateDrink" asp-route-id="@Model.Drink.DrinkId">
+    <form method="get" asp-controller="Update" asp-action="Drink" asp-route-id="@Model.Drink.DrinkId">
         <button type="submit" class="btn btn-outline-info me-2">Update Drink Information</button>
     </form>
 
