@@ -12,7 +12,7 @@ namespace WinUIApp.ProxyServices
     using System.Net.Http;
     using System.Net.Http.Json;
     using System.Text.Json;
-    using WinUIApp.Data.Requests.Drink;
+    using Requests.Drink;
     using WinUIApp.ProxyServices.Models;
 
     /// <summary>
@@ -104,14 +104,14 @@ namespace WinUIApp.ProxyServices
         {
             try
             {
-                List<WinUiApp.Data.Data.Category> convertedCategories = new List<WinUiApp.Data.Data.Category>();
+                List<Category> convertedCategories = new List<Category>();
                 foreach (var category in inputtedDrinkCategories)
                 {
-                    convertedCategories.Add(new WinUiApp.Data.Data.Category
-                    {
-                        CategoryId = category.CategoryId,
-                        CategoryName = category.CategoryName,
-                    });
+                    convertedCategories.Add(new Category
+                    (
+                        category.CategoryId,
+                        category.CategoryName
+                    ));
                 }
 
                 var request = new AddDrinkRequest
@@ -139,13 +139,14 @@ namespace WinUIApp.ProxyServices
         /// <exception cref="Exception"> any issues. </exception>
         public void UpdateDrink(Drink drink)
         {
-            WinUiApp.Data.Data.Drink convertedDrink = new WinUiApp.Data.Data.Drink
+            Drink convertedDrink = new()
             {
                 DrinkId = drink.DrinkId,
                 DrinkName = drink.DrinkName,
-                DrinkURL = drink.DrinkImageUrl,
-                AlcoholContent = (decimal)drink.AlcoholContent,
-                BrandId = drink.DrinkBrand.BrandId,
+                DrinkImageUrl = drink.DrinkImageUrl,
+                CategoryList = drink.CategoryList,
+                AlcoholContent = drink.AlcoholContent,
+                DrinkBrand = drink.DrinkBrand,
             };
 
             try

@@ -10,7 +10,7 @@ namespace WinUIApp.ProxyServices
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Json;
-    using WinUIApp.Data.Requests.Drink;
+    using Requests.Drink;
     using WinUIApp.ProxyServices.Models;
     using WinUIApp.ProxyServices;
 

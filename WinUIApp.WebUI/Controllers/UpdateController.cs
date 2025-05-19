@@ -65,14 +65,13 @@ namespace WinUIApp.WebMVC.Controllers
                         AlcoholContent = updateDrinkViewModel.DrinkAlcoholPercentage,
                         DrinkBrand = new Brand(-1, updateDrinkViewModel.DrinkBrandName)
                     });
-                    return RedirectToAction("DrinkDetail", "Drink", updateDrinkViewModel.DrinkId);
+                    return RedirectToAction("DrinkDetail", "Drink", new {id = updateDrinkViewModel.DrinkId});
                 }
                 else
                 {
                     var newUpdateDrinkViewModel = new UpdateDrinkViewModel
                     {
                         DrinkId = id,
-                        //OldDrink = updateDrinkViewModel.OldDrink,
                         DrinkName = updateDrinkViewModel.DrinkName,
                         DrinkBrandName = updateDrinkViewModel.DrinkBrandName,
                         DrinkAlcoholPercentage = updateDrinkViewModel.DrinkAlcoholPercentage,

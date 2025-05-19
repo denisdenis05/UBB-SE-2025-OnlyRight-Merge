@@ -1,7 +1,6 @@
-﻿using WinUiApp.Data.Data;
-
-namespace WinUIApp.Data.Requests.Drink
+﻿namespace WinUIApp.ProxyServices.Requests.Drink
 {
+    using Models;
     public class AddDrinkRequest
     {
         public string inputtedDrinkName { get; set; }
