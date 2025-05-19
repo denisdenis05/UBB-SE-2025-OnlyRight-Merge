@@ -50,11 +50,6 @@
             <i class="bi bi-heart@(Model.IsInFavorites ? "-fill" : "")" style="font-size: 1.2rem;"></i>
         </button>
     </form>
-
-    <!-- Add Rating -->
-    <form method="get" asp-action="AddRating" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-success">Add Rating</button>
-    </form>
 </div>
 
 <div class="text-center">
