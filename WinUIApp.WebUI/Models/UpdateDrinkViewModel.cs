@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using WinUIApp.ProxyServices.Models;
 
-namespace WinUIApp.WebMVC.Models
+namespace WinUIApp.WebUI.Models
 {
     public class UpdateDrinkViewModel
     {

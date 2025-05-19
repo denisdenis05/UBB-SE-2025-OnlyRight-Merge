@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WinUIApp.ProxyServices;
 using WinUIApp.ProxyServices.Models;
-using WinUIApp.WebMVC.Models;
+using WinUIApp.WebUI.Models;
 
-namespace WinUIApp.WebMVC.Controllers
+namespace WinUIApp.WebUI.Controllers
 {
     public class UpdateController(IDrinkService drinkService) : Controller
     {
