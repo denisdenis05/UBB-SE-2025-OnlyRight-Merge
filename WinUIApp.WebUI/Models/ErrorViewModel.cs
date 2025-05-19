@@ -1,4 +1,4 @@
-namespace WinUIApp.WebMVC.Models;
+namespace WinUIApp.WebUI.Models;
 
 public class ErrorViewModel
 {

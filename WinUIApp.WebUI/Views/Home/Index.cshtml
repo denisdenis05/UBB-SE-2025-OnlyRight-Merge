@@ -1,14 +1,102 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
 }
+@using Azure.Core
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model HomeViewModel
 
+<div class="container-fluid">
+    <div class="row"> 
+        <form asp-action="Index" method="post" class="sidebar col-md-3 p-4 border-end">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to IMDB Drinks</h1>
-    <div >
-        <h2>Drink of the day:</h2>
-        <h3>@Model.DrinkOfTheDay.DrinkName</h3>
-        <img src="@Model.DrinkOfTheDay.DrinkImageUrl" />
+            <h3>Search filters:</h3>
+            <input name="searchKeyword" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <div class="align-bottom py-2">
+                <label class="fw-semibold">Categories:</label>
+                <div id="checkboxListCategories" class="checkbox-list px-1">
+                    @foreach (var brand in Model.drinkCategories)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="SelectedCategories" value="@brand.CategoryName"/>
+                            @brand.CategoryName
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="align-bottom py-2">
+                <label class="fw-semibold">Brands:</label>
+                <div id="checkboxListBrands" class="checkbox-list px-3">
+                    @foreach (var brand in Model.drinkBrands)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="SelectedBrandNames" value="@brand.BrandName"/>
+                            @brand.BrandName
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <label>Minimum Alcohol content: <span id="minValueDisplay">0.0</span>%</label>
+            <input name="minValue" id="minValue" type="range" class="form-range" min="0" max="100" step="0.1" value="0" oninput="updateSliderValue('minValue')">
+
+            <label>Maximum Alcohol content: <span id="maxValueDisplay">100.0</span>%</label>
+            <input name="maxValue" id="maxValue" type="range" class="form-range" min="0" max="100" step="0.1" value="100" oninput="updateSliderValue('maxValue')">
+            
+            <label for="minStars" class="form-label">Minimum Stars</label>
+            <select type="number" name="minStars" id="minStars" class="form-select mb-3" aria-label="Minimum Stars">
+                <option value="">Stars</option>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+            <div class="d-flex gap-2 w-100 justify-content-end">
+                <button type="button" class="btn btn-outline-secondary">
+                    Clear
+                </button>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+
+
+    <div class="text-center col-md-9 p-4">
+        <h1 class="display-4">Welcome to IMDB Drinks</h1>
+        <div >
+            <h2>Drink of the day:</h2>
+            <div class="card shadow-sm border mb-5" style="max-width: 500px; margin: 0 auto;">
+                @await Html.PartialAsync(
+                    "~/Views/Drink/DrinkElement.cshtml",
+                    new WinUIApp.WebUI.Models.DrinkElementViewModel { Drink = Model.DrinkOfTheDay }
+                )
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+            @foreach (var drink in Model.drinks)
+            {
+                <div class="card shadow-sm border" style="width: 220px; height: 400px; overflow: hidden;">
+                    @await Html.PartialAsync(
+                        "~/Views/Drink/DrinkElement.cshtml",
+                        new WinUIApp.WebUI.Models.DrinkElementViewModel { Drink = drink }
+                    )
+                </div>
+            }
+        </div>
+        <div>
+            
+        </div>
+    </div>
     </div>
 </div>
+<script>
+    function updateSliderValue(id) {
+        const slider = document.getElementById(id);
+        const display = document.getElementById(id + 'Display');
+        display.textContent = parseFloat(slider.value).toFixed(1);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateSliderValue('minValue');
+        updateSliderValue('maxValue');
+    });
+</script>

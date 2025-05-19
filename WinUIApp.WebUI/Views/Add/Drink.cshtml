@@ -1,0 +1,40 @@
+﻿@model WinUIApp.WebUI.Models.AddDrinkViewModel;
+@{
+    ViewData["Title"] = "Add Drink";
+}
+
+<h2 class="mb-4">Add a New Drink!</h2>
+
+<form asp-action="Drink" asp-controller="Add" method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label asp-for="DrinkName" class="form-label"></label>
+        <input asp-for="DrinkName" class="form-control" />
+        <span asp-validation-for="DrinkName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkBrandName" class="form-label"></label>
+        <input asp-for="DrinkBrandName" class="form-control" />
+        <span asp-validation-for="DrinkBrandName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkAlcoholPercentage" class="form-label"></label>
+        <input asp-for="DrinkAlcoholPercentage" class="form-control" />
+        <span asp-validation-for="DrinkAlcoholPercentage" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkImagePath" class="form-label"></label>
+        <input asp-for="DrinkImagePath" class="form-control" />
+        <span asp-validation-for="DrinkImagePath" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkCategories" class="form-label"></label>
+        <select asp-for="DrinkCategories" asp-items="Model.AvailableCategories" multiple class="form-select"></select>
+        <span asp-validation-for="DrinkCategories" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

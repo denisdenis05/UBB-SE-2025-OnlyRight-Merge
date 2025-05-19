@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IDrinkService, ProxyDrinkService>();
+builder.Services.AddSingleton<IDrinkService, ProxyDrinkService>();
 builder.Services.AddTransient<IRatingService, ProxyRatingService>();
 builder.Services.AddTransient<IReviewService, ProxyReviewService>();
 

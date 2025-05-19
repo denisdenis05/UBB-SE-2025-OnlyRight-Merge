@@ -6,18 +6,14 @@
 <div class="container">
     <h1 class="display-4 text-center mb-4">My Favorite Drinks</h1>
     
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
         @foreach (var drink in Model.FavoriteDrinks)
         {
-            <div class="col">
-                <a asp-controller="Drink" asp-action="DrinkDetail" asp-route-id="@drink.DrinkId" class="text-decoration-none">
-                    <div class="card h-100">
-                        <img src="@drink.DrinkImageUrl" style="height: 200px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title text-dark">@drink.DrinkName</h5>
-                        </div>
-                    </div>
-                </a>
+            <div class="card shadow-sm border" style="width: 220px; height: 400px; overflow: hidden;">
+                @await Html.PartialAsync(
+                    "~/Views/Drink/DrinkElement.cshtml",
+                    new WinUIApp.WebUI.Models.DrinkElementViewModel { Drink = drink }
+                )
             </div>
         }
     </div>

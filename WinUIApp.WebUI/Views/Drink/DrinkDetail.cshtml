@@ -8,9 +8,8 @@
     <img src="@Model.Drink.DrinkImageUrl" alt="Drink Image" style="height: 180px;" class="mb-3" />
 </div>
 
-<div class="d-flex justify-content-center mb-3">
+<div class="d-flex justify-content-center align-items-center gap-3 mb-3">
 
-    <!-- Placeholder for Update -->
     <form method="get" asp-controller="Update" asp-action="Drink" asp-route-id="@Model.Drink.DrinkId">
         <button type="submit" class="btn btn-outline-info me-2">Update Drink Information</button>
     </form>
@@ -30,9 +29,16 @@
         </ul>
     </div>
 
+    <!-- Favorites Heart Toggle -->
+    <form method="post" asp-action="ToggleFavorites" asp-route-id="@Model.Drink.DrinkId">
+        <button type="submit" class="btn @(Model.IsInFavorites ? "btn-danger" : "btn-outline-danger")" aria-label="@(Model.IsInFavorites ? "Remove from favorites" : "Add to favorites")">
+            <i class="bi bi-heart@(Model.IsInFavorites ? "-fill" : "")" style="font-size: 1.2rem;"></i>
+        </button>
+    </form>
+
     <!-- Add Rating -->
     <form method="get" asp-action="AddRating" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-success me-2">Add Rating</button>
+        <button type="submit" class="btn btn-outline-success">Add Rating</button>
     </form>
 </div>
 
