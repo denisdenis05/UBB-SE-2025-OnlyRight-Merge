@@ -358,7 +358,7 @@ namespace WinUIApp.ProxyServices
             }
             catch (Exception exception)
             {
-                throw new Exception("Error getting drink of the day:", exception);
+                throw new Exception("Error getting drink of the day: " + exception.Message, exception);
             }
         }
 

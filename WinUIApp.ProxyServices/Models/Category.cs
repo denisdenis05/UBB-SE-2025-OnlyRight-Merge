@@ -53,5 +53,7 @@ namespace WinUIApp.ProxyServices.Models
         /// </summary>
         /// <returns> Returns the int hash code for the current category. </returns>
         public override int GetHashCode() => CategoryId.GetHashCode();
+
+        public override string ToString() => CategoryName;
     }
 }

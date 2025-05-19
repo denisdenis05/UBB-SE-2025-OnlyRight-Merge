@@ -4,8 +4,7 @@ using WinUIApp.ProxyServices.Models;
 using WinUIApp.WebUI.Models;
 
 namespace WinUIApp.WebUI.Models
-{
-    public class DrinkDetailViewModel
+{    public class DrinkDetailViewModel
     {
         public DrinkDetailViewModel()
         {
@@ -21,6 +20,7 @@ namespace WinUIApp.WebUI.Models
         public List<Review> Reviews { get; set; }
         public List<Rating> Ratings { get; set; }
         public Dictionary<int, List<Review>> ReviewsByRating { get; set; }
+        public bool IsInFavorites { get; set; }
         
         // For the review form that appears when a rating is tapped
         public RatingReviewViewModel NewReview { get; set; }

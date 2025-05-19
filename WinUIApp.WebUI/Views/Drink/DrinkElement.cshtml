@@ -1,0 +1,22 @@
+﻿@model WinUIApp.WebUI.Models.DrinkElementViewModel
+
+<a asp-controller="Drink" asp-action="DrinkDetail" asp-route-id="@Model.Drink.DrinkId" class="text-decoration-none h-100">
+    <div class="h-100">
+        <img src="@Model.Drink.DrinkImageUrl" class="card-img-top p-3" style="height: 200px; object-fit: contain;">
+        <div class="card-body text-center">
+            <h5 class="card-title text-dark">@Model.Drink.DrinkName</h5>
+            <p class="card-text text-dark small">Categories: 
+                @for (int i = 0; i < Model.Drink.CategoryList.Count; i++)
+                {
+                    @Model.Drink.CategoryList[i].CategoryName
+                    if (i < Model.Drink.CategoryList.Count - 1)
+                    {
+                        <span>, </span>
+                    }
+                }
+            </p>
+            <p class="card-text text-dark small">Brand: @Model.Drink.DrinkBrand.BrandName</p>
+            <p class="card-text text-dark small">Alcohol Content: @Model.Drink.AlcoholContent.ToString()</p>
+        </div>
+    </div>
+</a>

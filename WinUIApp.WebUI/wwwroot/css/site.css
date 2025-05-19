@@ -31,6 +31,12 @@ body {
   text-align: start;
 }
 
+.checkbox-list{
+  width: 100%;
+  height: 160px;
+  overflow: auto;
+}
+
 /* Modern animation effects */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

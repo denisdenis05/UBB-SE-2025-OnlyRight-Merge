@@ -26,9 +26,9 @@
 
 <div class="d-flex justify-content-center mb-3">
 
-    <!-- Placeholder for Update -->
+    <!-- Update Drink -->
     <form method="get" asp-action="UpdateDrink" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-info me-2">Update Drink Information</button>
+        <button type="submit" class="btn btn-outline-info">Update Drink Information</button>
     </form>    <!-- Delete confirmation -->
     <div class="dropdown">
         <button class="btn btn-outline-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -43,6 +43,18 @@
             </li>
         </ul>
     </div>
+
+    <!-- Favorites Heart Toggle -->
+    <form method="post" asp-action="ToggleFavorites" asp-route-id="@Model.Drink.DrinkId">
+        <button type="submit" class="btn @(Model.IsInFavorites ? "btn-danger" : "btn-outline-danger")" aria-label="@(Model.IsInFavorites ? "Remove from favorites" : "Add to favorites")">
+            <i class="bi bi-heart@(Model.IsInFavorites ? "-fill" : "")" style="font-size: 1.2rem;"></i>
+        </button>
+    </form>
+
+    <!-- Add Rating -->
+    <form method="get" asp-action="AddRating" asp-route-id="@Model.Drink.DrinkId">
+        <button type="submit" class="btn btn-outline-success">Add Rating</button>
+    </form>
 </div>
 
 <div class="text-center">
