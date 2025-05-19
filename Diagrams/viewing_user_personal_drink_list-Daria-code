@@ -1,0 +1,22 @@
+@startuml
+actor User
+    participant RazorPage
+    participant ViewModel
+    participant HttpService
+    participant WebAPIController
+    participant Repository
+    participant Database
+
+    User->>RazorPage: Click "View Favorites" button
+    RazorPage->>ViewModel: Trigger handler (OnGetFavoritesAsync)
+    ViewModel->>HttpService: GetUserFavoritesAsync(userId)
+    HttpService->>WebAPIController: HTTP GET /api/favorites/{userId}
+    WebAPIController->>Repository: GetFavoritesByUserIdAsync(userId)
+    Repository->>Database: Query Favorites by userId
+    Database-->>Repository: List<FavoriteItem>
+    Repository-->>WebAPIController: List<FavoriteItem>
+    WebAPIController-->>HttpService: List<FavoriteItem> (JSON)
+    HttpService-->>ViewModel: List<FavoriteItem>
+    ViewModel-->>RazorPage: Bind Favorites
+    RazorPage-->>User: Display Favorites
+@enduml
