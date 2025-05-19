@@ -1,4 +1,4 @@
-﻿namespace WinUIApp.Data.Requests.Drink
+﻿namespace WinUIApp.ProxyServices.Requests.Drink
 {
     public class AddToUserPersonalDrinkListRequest
     {
