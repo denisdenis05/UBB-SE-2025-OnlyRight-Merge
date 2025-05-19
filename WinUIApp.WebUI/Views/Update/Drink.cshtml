@@ -1,0 +1,42 @@
+﻿@model UpdateDrinkViewModel
+@{
+	ViewData["Title"] = "Update Drink";
+}
+
+<h2 class="mb-4">Update the drink!</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Drink" asp-controller="Update" asp-route-id="@Model.DrinkId" method="post" class="needs-validation" novalidate>
+    <input asp-for="DrinkId" type="hidden" />
+    
+    <div class="mb-3">
+        <label asp-for="DrinkName" class="form-label"></label>
+        <input asp-for="DrinkName" class="form-control" />
+        <span asp-validation-for="DrinkName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkBrandName" class="form-label"></label>
+        <input asp-for="DrinkBrandName" class="form-control" />
+        <span asp-validation-for="DrinkBrandName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkAlcoholPercentage" class="form-label"></label>
+        <input asp-for="DrinkAlcoholPercentage" class="form-control" />
+        <span asp-validation-for="DrinkAlcoholPercentage" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkImagePath" class="form-label"></label>
+        <input asp-for="DrinkImagePath" class="form-control" />
+        <span asp-validation-for="DrinkImagePath" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DrinkCategoriesIds" class="form-label"></label>
+        <select asp-for="DrinkCategoriesIds" asp-items="Model.AvailableCategories" multiple class="form-select"></select>
+        <span asp-validation-for="DrinkCategoriesIds" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

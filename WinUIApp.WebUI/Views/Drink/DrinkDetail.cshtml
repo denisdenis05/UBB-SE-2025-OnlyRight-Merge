@@ -26,10 +26,10 @@
 
 <div class="d-flex justify-content-center mb-3">
 
-    <!-- Update Drink -->
-    <form method="get" asp-action="UpdateDrink" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-info">Update Drink Information</button>
-    </form>    <!-- Delete confirmation -->
+    <form method="get" asp-controller="Update" asp-action="Drink" asp-route-id="@Model.Drink.DrinkId">
+        <button type="submit" class="btn btn-outline-info me-2">Update Drink Information</button>
+    </form>
+  
     <div class="dropdown">
         <button class="btn btn-outline-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
             Remove
