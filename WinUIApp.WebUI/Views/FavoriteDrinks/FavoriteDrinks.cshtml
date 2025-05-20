@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "My Favorite Drinks";
 }
-@model FavoriteDrinksViewModel
+@model WinUIApp.WebUI.Models.FavoriteDrinksViewModel
 
 <div class="container">
     <h1 class="display-4 text-center mb-4">My Favorite Drinks</h1>
@@ -12,7 +12,8 @@
             <div class="card shadow-sm border" style="width: 220px; height: 400px; overflow: hidden;">
                 @await Html.PartialAsync(
                     "~/Views/Drink/DrinkElement.cshtml",
-                    new WinUIApp.WebUI.Models.DrinkElementViewModel { Drink = drink }
+                    new WinUIApp.WebUI.Models.DrinkElementViewModel { Drink = drink },
+                    null
                 )
             </div>
         }

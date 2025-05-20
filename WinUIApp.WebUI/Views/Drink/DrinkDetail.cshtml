@@ -1,4 +1,4 @@
-@model DrinkDetailViewModel
+@model WinUIApp.WebUI.Models.DrinkDetailViewModel
 @{
     ViewData["Title"] = Model.Drink.DrinkName;
 }
@@ -8,14 +8,28 @@
     <img src="@Model.Drink.DrinkImageUrl" alt="Drink Image" style="height: 180px;" class="mb-3" />
 </div>
 
-<div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
-    <!-- Update Drink -->
-    <form method="get" asp-action="UpdateDrink" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-info">Update Drink Information</button>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-center mb-3">
+
+    <form method="get" asp-controller="Update" asp-action="Drink" asp-route-id="@Model.Drink.DrinkId">
+        <button type="submit" class="btn btn-outline-info me-2">Update Drink Information</button>
     </form>
-
-    <!-- Delete confirmation -->
+  
     <div class="dropdown">
         <button class="btn btn-outline-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
             Remove
@@ -36,27 +50,225 @@
             <i class="bi bi-heart@(Model.IsInFavorites ? "-fill" : "")" style="font-size: 1.2rem;"></i>
         </button>
     </form>
-
-    <!-- Add Rating -->
-    <form method="get" asp-action="AddRating" asp-route-id="@Model.Drink.DrinkId">
-        <button type="submit" class="btn btn-outline-success">Add Rating</button>
-    </form>
 </div>
 
 <div class="text-center">
     <p><strong>Brand:</strong> @Model.Drink.DrinkBrand.BrandName</p>
-    <p><strong>Alcohol %:</strong> @Model.Drink.AlcoholContent</p>
-    <p><strong>Categories:</strong> @Model.CategoriesDisplay</p>
+    <p><strong>Alcohol %:</strong> @Model.Drink.AlcoholContent</p>    <p><strong>Categories:</strong> @Model.CategoriesDisplay</p>
     <p><strong>Review score:</strong> ⭐ @Model.AverageRatingScore / 5</p>
 </div>
 
 <hr />
 
-<h2>Reviews</h2>
-
-@foreach (var review in Model.Reviews)
-{
-    <div class="border border-warning p-3 mb-3 rounded">
-        <p>@review.Content</p>
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card rating-summary">
+            <div class="card-body">
+                <h4 class="mb-4 border-bottom pb-2">Rate This Drink</h4>
+                <form asp-action="AddRatingAndReview" asp-controller="Drink" method="post" class="review-form">
+                    <input type="hidden" name="DrinkId" value="@Model.Drink.DrinkId" />
+                    <input type="hidden" name="UserId" value="1" />
+                    
+                    <div class="form-group mb-3">
+                        <label class="form-label fw-bold mb-2">How would you rate this drink?</label>
+                        <div class="star-rating">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Score" id="star1" value="1" required>
+                                <label class="form-check-label" for="star1">★</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Score" id="star2" value="2">
+                                <label class="form-check-label" for="star2">★</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Score" id="star3" value="3">
+                                <label class="form-check-label" for="star3">★</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Score" id="star4" value="4">
+                                <label class="form-check-label" for="star4">★</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Score" id="star5" value="5">
+                                <label class="form-check-label" for="star5">★</label>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <span id="ratingInfo" class="text-muted small">Select your rating</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary px-4 py-2 fw-bold mt-2">Submit Rating</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
+<h2 class="mb-3 fw-bold">Ratings & Reviews</h2>
+
+@if (Model.Ratings != null && Model.Ratings.Count > 0)
+{
+    <div class="row">
+        @foreach (var rating in Model.Ratings)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card rating-card" data-rating-id="@rating.RatingId">                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="rating-value">
+                                <span class="star-icon">★</span> @rating.RatingValue
+                                @if (Model.ReviewsByRating.ContainsKey(rating.RatingId) && Model.ReviewsByRating[rating.RatingId].Count > 0)
+                                {
+                                    <span class="review-count-badge">@Model.ReviewsByRating[rating.RatingId].Count review@(Model.ReviewsByRating[rating.RatingId].Count > 1 ? "s" : "")</span>
+                                }
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="user-badge me-2" title="User ID">User id: @rating.UserId</span>
+                                <span class="text-muted small">@rating.RatingDate.ToString("MMM dd, yyyy")</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.ReviewsByRating.ContainsKey(rating.RatingId) && Model.ReviewsByRating[rating.RatingId].Count > 0)
+                        {
+                            <h6 class="fw-bold mb-3">Reviews for this rating:</h6>                            @foreach(var review in Model.ReviewsByRating[rating.RatingId])
+                            {
+                                <div class="review-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <p class="mb-0">@review.Content</p>
+                                        <span class="user-badge ms-2" title="User ID">@review.UserId</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted">No reviews yet for this rating.</p>
+                        }
+                        <div class="mt-3 d-flex justify-content-end">
+                            <a href="@Url.Action("AddReviewToRating", "Drink", new { ratingId = rating.RatingId, drinkId = Model.Drink.DrinkId })" 
+                               class="btn btn-sm btn-primary btn-add-review">
+                                <i class="bi bi-chat-dots"></i> Add Review
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-light border text-center p-4 mb-4">
+        <i class="bi bi-star fs-4 d-block mb-2"></i>
+        <p class="mb-0">No ratings yet. Be the first to rate this drink!</p>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Enhanced star rating selection experience with descriptions
+            const stars = document.querySelectorAll('.star-rating input[type="radio"]');
+            const ratingDescriptions = [
+                "Poor", "Fair", "Good", "Very Good", "Excellent"
+            ];
+            const ratingInfo = document.getElementById('ratingInfo');
+            
+            // Make first star selected by default
+            stars[0].checked = true;
+            updateStarsDisplay(0);
+            ratingInfo.textContent = `1 - ${ratingDescriptions[0]}`;
+            
+            // Process each star input
+            stars.forEach((star, index) => {
+                // Set initial state for all stars before selected one
+                if (index === 0) {
+                    star.nextElementSibling.classList.add('text-warning');
+                }
+                
+                // Handle hover effect
+                star.nextElementSibling.addEventListener('mouseenter', function() {
+                    // Clear all stars
+                    stars.forEach((s, i) => {
+                        s.nextElementSibling.style.color = '';
+                    });
+                    
+                    // Fill stars up to current one on hover
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].nextElementSibling.style.color = 'var(--star-hover-color)';
+                    }
+                });
+                
+                star.nextElementSibling.addEventListener('mouseleave', function() {
+                    // Reset stars to their checked state
+                    stars.forEach((s, i) => {
+                        s.nextElementSibling.style.color = '';
+                    });
+                    
+                    // Find selected star and update display
+                    for (let i = 0; i < stars.length; i++) {
+                        if (stars[i].checked) {
+                            updateStarsDisplay(i);
+                            break;
+                        }
+                    }
+                });
+                
+                // Handle click/change
+                star.addEventListener('change', function() {
+                    updateStarsDisplay(index);
+                    ratingInfo.textContent = `${index + 1} - ${ratingDescriptions[index]}`;
+                });
+            });
+            
+            // Function to update stars display based on selection
+            function updateStarsDisplay(selectedIndex) {
+                stars.forEach((s, i) => {
+                    const label = s.nextElementSibling;
+                    if (i <= selectedIndex) {
+                        label.classList.add('text-warning');
+                    } else {
+                        label.classList.remove('text-warning');
+                    }
+                });
+            }
+            
+            // Add click event to rating cards to navigate to add review page with improved handling
+            document.querySelectorAll('.rating-card').forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on btn or any child of btn
+                    if (!e.target.closest('a.btn') && !e.target.closest('.btn-add-review')) {
+                        const ratingId = this.getAttribute('data-rating-id');
+                        const drinkId = @Model.Drink.DrinkId;
+                        window.location.href = `/Drink/AddReviewToRating?ratingId=${ratingId}&drinkId=${drinkId}`;
+                    }
+                });
+                  // Add subtle pulse animation on load to highlight interactivity
+                setTimeout(() => {
+                    card.style.animation = 'pulse 1s ease-in-out';
+                    setTimeout(() => {
+                        card.style.animation = '';
+                    }, 1000);
+                }, 500 + Math.random() * 1000); // Stagger the animations
+                
+                // Add tooltips to clarify that rating cards are clickable
+                card.title = 'Click to add a review to this rating';
+            });
+            
+            // If there's a success message, scroll to it with enhanced animation
+            const successMessage = document.querySelector('.alert-success');
+            if (successMessage) {
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add highlight effect
+                successMessage.classList.add('highlight-effect');
+                
+                // Remove highlight after animation completes
+                setTimeout(() => {
+                    successMessage.classList.remove('highlight-effect');
+                }, 3000);
+            }
+        });
+    </script>
 }
