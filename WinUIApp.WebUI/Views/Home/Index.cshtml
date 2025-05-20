@@ -15,7 +15,7 @@
 <div class="container-fluid app-container">
     <div class="row">
         <div class="col-lg-3 mb-4">
-            <form asp-action="Index" method="post" class="filter-sidebar">
+            <form asp-action="Index" method="get" class="filter-sidebar">
                 <h3>
                     <i class="bi bi-funnel me-2"></i>
                     Filter Drinks
@@ -142,11 +142,12 @@
         </div>
     </div>
 </div>
+
 <script>
     function updateSliderValue(id) {
         const slider = document.getElementById(id);
         const display = document.getElementById(id + 'Display');
-        display.textContent = parseFloat(slider.value).toFixed(1);
+        display.textContent = parseFloat(slider.value).toFixed(1) + '%';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
