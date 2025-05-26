@@ -49,6 +49,29 @@ namespace WinUIApp.ProxyServices
                 throw new Exception($"Error happened while getting average for drink with ID {drinkID}:", exception);
             }
         }
+        public List<Review> GetAllReviewsForRatings(List<Rating> ratings)
+        {
+            var allReviews = new List<Review>();
+
+            foreach (var rating in ratings)
+            {
+                try
+                {
+                    var response = this.httpClient.GetAsync($"Review/get-by-rating?ratingId={rating.RatingId}").Result;
+                    response.EnsureSuccessStatusCode();
+
+                    var reviews = response.Content.ReadFromJsonAsync<List<Review>>().Result;
+                    if (reviews != null)
+                        allReviews.AddRange(reviews);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error while getting reviews for rating ID {rating.RatingId}:", ex);
+                }
+            }
+
+            return allReviews;
+        }
 
         public List<Review> GetReviewsByDrinkID(int drinkID)
         {
@@ -56,7 +79,9 @@ namespace WinUIApp.ProxyServices
             {
                 var response = this.httpClient.GetAsync($"Rating/get-ratings-by-drink?drinkId={drinkID}").Result;
                 response.EnsureSuccessStatusCode();
-                return response.Content.ReadFromJsonAsync<List<Review>>().Result;
+                var ratings = response.Content.ReadFromJsonAsync<List<Rating>>().Result;
+
+                return GetAllReviewsForRatings(ratings);
             }
             catch (Exception exception)
             {
