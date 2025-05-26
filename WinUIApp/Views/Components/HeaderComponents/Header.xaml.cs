@@ -7,6 +7,7 @@ namespace WinUIApp.Views.Components.HeaderComponents
     using System.Linq;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
+    using WinUIApp.ProxyServices;
     using WinUIApp.Utils.NavigationParameters;
     using WinUIApp.Views.Pages;
     using WinUIApp.Views.ViewModels;
@@ -24,7 +25,7 @@ namespace WinUIApp.Views.Components.HeaderComponents
         public Header()
         {
             this.InitializeComponent();
-            this.viewModel = new HeaderViewModel(new Services.ProxyDrinkService());
+            this.viewModel = new HeaderViewModel(new ProxyDrinkService());
             this.CategoryMenu.PopulateCategories(this.viewModel.GetCategories());
         }
 

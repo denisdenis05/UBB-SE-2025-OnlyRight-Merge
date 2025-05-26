@@ -15,6 +15,7 @@ namespace WinUIApp.WebAPI.Repositories
     using Microsoft.EntityFrameworkCore;
     using WinUiApp.Data;
     using WinUiApp.Data.Data;
+    using WinUiApp.Data.Interfaces;
 
     /// <summary>
     /// Repository for managing drink-related operations.
@@ -22,13 +23,13 @@ namespace WinUIApp.WebAPI.Repositories
     internal class DrinkRepository : IDrinkRepository
     {
         private const int NoCategoriesCount = 0;
-        AppDbContext dbContext;
+        IAppDbContext dbContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DrinkRepository"/> class.
         /// </summary>
         /// <param name="dataBaseService"> The database service. </param>
-        public DrinkRepository(AppDbContext dbContext)
+        public DrinkRepository(IAppDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -195,7 +196,7 @@ namespace WinUIApp.WebAPI.Repositories
 
                 var existingDrink = dbContext.Drinks
                                              .Include(drink => drink.DrinkCategories) 
-                                             .FirstOrDefault(drink => drink.DrinkId == drink.DrinkId);
+                                             .FirstOrDefault(drink => drink.DrinkId == drinkDto.DrinkId);
 
                 if (existingDrink == null)
                     throw new Exception("No drink found with the provided ID.");

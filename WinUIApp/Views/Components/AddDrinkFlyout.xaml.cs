@@ -11,7 +11,7 @@ namespace WinUIApp.Views.Components
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices;
     using WinUIApp.Services;
     using WinUIApp.Services.DummyServices;
     using WinUIApp.ViewModels;

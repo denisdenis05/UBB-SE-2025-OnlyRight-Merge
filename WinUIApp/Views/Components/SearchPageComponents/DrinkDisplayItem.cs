@@ -5,7 +5,7 @@
 namespace WinUIApp.Views.Components.SearchPageComponents
 {
     using System;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// Represents a drink item to display on the search page, along with its average review score.

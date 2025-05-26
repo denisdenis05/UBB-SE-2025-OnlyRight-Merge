@@ -4,7 +4,6 @@
 
 namespace WinUIApp.Views.Windows
 {
-    using WinUIApp.Models;
     using WinUIApp.ViewHelpers;
     using WinUIApp.ViewModels;
     using Microsoft.UI.Xaml;

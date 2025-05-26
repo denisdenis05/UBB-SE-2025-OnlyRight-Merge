@@ -7,9 +7,8 @@ namespace WinUIApp.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using Mysqlx.Crud;
-    using WinUIApp.Models;
-    using WinUIApp.Services;
-    using WinUIApp.Services.DummyServices;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Views;
     using WinUIApp.Views.Components.SearchPageComponents;
     using WinUIApp.Views.Pages;

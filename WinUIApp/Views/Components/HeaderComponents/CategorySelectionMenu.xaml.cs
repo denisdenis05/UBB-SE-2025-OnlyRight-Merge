@@ -17,7 +17,7 @@ namespace WinUIApp.Views.Components.HeaderComponents
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Media;
     using Microsoft.UI.Xaml.Navigation;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// Represents a user control for selecting categories in a menu.

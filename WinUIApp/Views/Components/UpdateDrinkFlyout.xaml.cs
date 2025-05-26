@@ -13,7 +13,8 @@ namespace WinUIApp.Views.Components
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
     using Org.BouncyCastle.Asn1.Ocsp;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Services;
     using WinUIApp.Services.DummyServices;
     using WinUIApp.ViewModels;

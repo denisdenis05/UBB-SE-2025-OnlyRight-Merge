@@ -12,7 +12,7 @@ namespace WinUIApp.ViewModels
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading.Tasks;
-    using WinUIApp.Services;
+    using WinUIApp.ProxyServices;
     using WinUIApp.Services.DummyServices;
 
     /// <summary>

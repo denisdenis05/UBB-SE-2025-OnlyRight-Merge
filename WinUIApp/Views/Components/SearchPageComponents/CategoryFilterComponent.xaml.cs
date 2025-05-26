@@ -11,7 +11,7 @@ namespace WinUIApp.Views.Components.SearchPageComponents
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.UI.Xaml.Controls;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// A UserControl that provides a category filter for a list of items.

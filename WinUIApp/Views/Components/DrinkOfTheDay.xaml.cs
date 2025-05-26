@@ -16,7 +16,7 @@ namespace WinUIApp.Views.Components
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Media;
     using Microsoft.UI.Xaml.Navigation;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Utils.Converters;
 
     /// <summary>

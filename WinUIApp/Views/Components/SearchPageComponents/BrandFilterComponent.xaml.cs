@@ -9,7 +9,7 @@ namespace WinUIApp.Views.Components.SearchPageComponents
     using System.Collections.ObjectModel;
     using System.Linq;
     using Microsoft.UI.Xaml.Controls;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// A user control for filtering drinks by brand.

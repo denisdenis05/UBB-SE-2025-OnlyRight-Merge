@@ -21,8 +21,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WinUIApp.Services;
-using WinUIApp.Repositories;
+using WinUIApp.ProxyServices;
 using WinUIApp.Services.DummyServices;
 
 namespace WinUIApp
@@ -67,10 +66,6 @@ namespace WinUIApp
             services.AddSingleton<IRatingService, ProxyRatingService>();
             services.AddSingleton<IReviewService, ProxyReviewService>();
             services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IRatingRepository, DatabaseRatingRepository>();
-            services.AddSingleton<IReviewRepository, DatabaseReviewRepository>();
-            services.AddTransient<DatabaseConnection>();
-            services.AddTransient<IRatingRepository, DatabaseRatingRepository>();
 
 
 

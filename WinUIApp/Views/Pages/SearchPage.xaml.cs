@@ -8,7 +8,8 @@ namespace WinUIApp.Views.Pages
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Navigation;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Utils.NavigationParameters;
     using WinUIApp.ViewModels;
     using WinUIApp.Views.Components.SearchPageComponents;
@@ -36,7 +37,7 @@ namespace WinUIApp.Views.Pages
         {
             base.OnNavigatedTo(eventArguments);
             MainWindow.PreviousPage = typeof(SearchPage);
-            this.searchPageViewModel = new SearchPageViewModel(new Services.ProxyDrinkService(), new Services.ProxyDrinkReviewService());
+            this.searchPageViewModel = new SearchPageViewModel(new ProxyDrinkService(), new ProxyDrinkReviewService());
             this.SortSelectorControl.SetSortOrder(this.searchPageViewModel.IsAscending);
             if (eventArguments.Parameter is SearchPageNavigationParameters parameters)
             {

@@ -5,7 +5,7 @@
 namespace WinUIApp.Utils.NavigationParameters
 {
     using System.Collections.Generic;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// Parameters for navigating to the search page.

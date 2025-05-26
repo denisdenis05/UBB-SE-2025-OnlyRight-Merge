@@ -8,7 +8,7 @@ namespace WinUIApp.Utils.Converters
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.UI.Xaml.Data;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// Converter to transform a list of categories into a comma-separated string.

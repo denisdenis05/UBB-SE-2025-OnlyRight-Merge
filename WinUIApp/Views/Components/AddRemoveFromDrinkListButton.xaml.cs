@@ -7,6 +7,7 @@ namespace WinUIApp.Views.Components
     using System.Diagnostics;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
+    using WinUIApp.ProxyServices;
     using WinUIApp.Services;
     using WinUIApp.Services.DummyServices;
     using WinUIApp.ViewModels;

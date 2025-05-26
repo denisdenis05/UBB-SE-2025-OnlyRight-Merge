@@ -7,6 +7,7 @@ namespace WinUIApp.Views.Pages
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Input;
     using Microsoft.UI.Xaml.Navigation;
+    using WinUIApp.ProxyServices;
     using WinUIApp.Services;
     using WinUIApp.Services.DummyServices;
     using WinUIApp.ViewModels;

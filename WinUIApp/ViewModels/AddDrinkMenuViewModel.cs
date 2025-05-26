@@ -11,8 +11,8 @@ namespace WinUIApp.ViewModels
     using System.Diagnostics;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using WinUIApp.Models;
-    using WinUIApp.Services;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Services.DummyServices;
 
     /// <summary>

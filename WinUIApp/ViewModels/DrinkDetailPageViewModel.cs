@@ -12,8 +12,8 @@ namespace WinUIApp.Views.ViewModels
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.Windows.Management.Deployment;
-    using WinUIApp.Models;
-    using WinUIApp.Services;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Services.DummyServices;
     using WinUIApp.Views.Pages;
 

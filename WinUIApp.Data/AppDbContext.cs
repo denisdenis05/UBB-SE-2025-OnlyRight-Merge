@@ -6,25 +6,28 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WinUiApp.Data.Data;
+using WinUiApp.Data.Interfaces;
 
 namespace WinUiApp.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : DbContext, IAppDbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 
-    public DbSet<Brand> Brands { get; set; }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Drink> Drinks { get; set; }
-    public DbSet<DrinkCategory> DrinkCategories { get; set; }
-    public DbSet<User> Users { get; set; }
-    public DbSet<Vote> Votes { get; set; }
-    public DbSet<DrinkOfTheDay> DrinkOfTheDays { get; set; }
-    public DbSet<UserDrink> UserDrinks { get; set; }
-    public DbSet<Review> Reviews { get; set; }
-    public DbSet<Rating> Ratings { get; set; }
+    public virtual DbSet<Brand> Brands { get; set; }
+    public virtual DbSet<Category> Categories { get; set; }
+    public virtual DbSet<Drink> Drinks { get; set; }
+    public virtual DbSet<DrinkCategory> DrinkCategories { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Vote> Votes { get; set; }
+    public virtual DbSet<DrinkOfTheDay> DrinkOfTheDays { get; set; }
+    public virtual DbSet<UserDrink> UserDrinks { get; set; }
+    public virtual DbSet<Review> Reviews { get; set; }
+    public virtual DbSet<Rating> Ratings { get; set; }
+
+    public override int SaveChanges() => base.SaveChanges();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

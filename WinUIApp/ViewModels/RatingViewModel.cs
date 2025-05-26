@@ -7,14 +7,12 @@ namespace WinUIApp.ViewModels
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using WinUIApp.Constants;
-    using WinUIApp.Models;
-    using WinUIApp.Services;
     using WinUIApp.ViewHelpers;
-    using WinUIApp.Constants;
-    using WinUIApp.Services;
     using WinUIApp.ViewModels;
     using System.Diagnostics;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Constants;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// ViewModel for managing ratings and associated bottle assets.

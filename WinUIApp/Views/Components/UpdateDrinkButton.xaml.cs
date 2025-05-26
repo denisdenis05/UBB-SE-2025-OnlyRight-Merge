@@ -13,7 +13,7 @@ namespace WinUIApp.Views.Components
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.UI.Xaml.Media;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Services;
     using static System.Net.WebRequestMethods;
 

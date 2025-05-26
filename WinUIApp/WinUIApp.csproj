@@ -112,12 +112,6 @@
         <Generator>MSBuild:Compile</Generator>
     </Page>
     </ItemGroup>
-	
-	<ItemGroup>
-		<None Update="appsettings.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<CodeAnalysisRuleSet>SE.ruleset</CodeAnalysisRuleSet>
@@ -158,6 +152,7 @@
       <Compile Remove="Review.cs" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\WinUIApp.Data\WinUIApp.Data.csproj" />
+		<ProjectReference Include="..\WinUIApp.Data\WinUIApp.Data.csproj" />
+		<ProjectReference Include="..\WinUIApp.ProxyServices\WinUIApp.ProxyServices.csproj" />
     </ItemGroup>
 </Project>

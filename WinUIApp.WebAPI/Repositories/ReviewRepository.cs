@@ -13,6 +13,7 @@ namespace WinUIApp.WebAPI.Repositories
     using System.Linq;
     using WinUiApp.Data;
     using WinUiApp.Data.Data;
+    using WinUiApp.Data.Interfaces;
     using WinUIApp.WebAPI.Constants.ErrorMessages;
 
     /// <summary>
@@ -20,13 +21,13 @@ namespace WinUIApp.WebAPI.Repositories
     /// </summary>
     internal class ReviewRepository : IReviewRepository
     {
-        private readonly AppDbContext dbContext;
+        private readonly IAppDbContext dbContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewRepository"/> class.
         /// </summary>
         /// <param name="dbContext">The database context.</param>
-        public ReviewRepository(AppDbContext dbContext)
+        public ReviewRepository(IAppDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

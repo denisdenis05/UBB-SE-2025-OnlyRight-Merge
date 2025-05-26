@@ -1,7 +1,0 @@
-﻿namespace WinUIApp.Data.Requests.Drink
-{
-    public class DeleteDrinkRequest
-    {
-        public int drinkId { get; set; }
-    }
-}

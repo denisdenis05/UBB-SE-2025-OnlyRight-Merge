@@ -8,7 +8,8 @@ namespace WinUIApp.ViewModels
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using Windows.Security.Authentication.OnlineId;
-    using WinUIApp.Models;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
     using WinUIApp.Services;
     using WinUIApp.Services;
     using WinUIApp.Services.DummyServices;

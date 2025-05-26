@@ -9,8 +9,8 @@ namespace WinUIApp.Views.ViewModels
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using WinUIApp.Models;
-    using WinUIApp.Services;
+    using WinUIApp.ProxyServices;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// ViewModel for the Header component. Manages the state and behavior of the header, including fetching drink categories.

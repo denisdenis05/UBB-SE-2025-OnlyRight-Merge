@@ -9,7 +9,6 @@ namespace WinUIApp.Views.Windows
     using Microsoft.UI.Xaml.Controls;
     using WinUIApp.Views.Windows;
     using WinUIApp.ViewModels;
-    using WinUIApp.Models;
     using CommunityToolkit.WinUI;
     using System.Diagnostics;
     using System.Threading.Tasks;

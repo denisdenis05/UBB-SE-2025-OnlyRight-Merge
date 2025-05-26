@@ -4,10 +4,10 @@
 
 namespace WinUIApp.ViewModels
 {
-    using WinUIApp.Models;
     using Microsoft.Extensions.Configuration;
     using Microsoft.UI.Xaml.Controls;
     using WinUIApp.ViewModels;
+    using WinUIApp.ProxyServices.Models;
 
     /// <summary>
     /// Represents the main view model for managing ratings and reviews.
